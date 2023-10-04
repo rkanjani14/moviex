@@ -14,7 +14,8 @@ const HeroBanner = () => {
     const navigate = useNavigate();
     const { url } = useSelector((state) => state.home);
     const { data, loading } = useFetch("/movie/upcoming");
-
+    const alphabetRegx = /^[a-zA-Z]+$/
+     
     useEffect(() => {
         const bg =
             url.backdrop +
@@ -23,7 +24,7 @@ const HeroBanner = () => {
     }, [data]);
 
     const searchQueryHandler = (event) => {
-        if (event.key === "Enter" && query.length > 0) {
+        if (event.key === "Enter" && alphabetRegx.test(query) && query.length > 0) {
             navigate(`/search/${query}`);
         }
     };

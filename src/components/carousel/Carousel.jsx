@@ -6,13 +6,11 @@ import {
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import dayjs from "dayjs";
-
 import ContentWrapper from "../contentWrapper/ContentWrapper";
 import Img from "../lazyLoadImage/Img";
 import PosterFallback from "../../assets/no-poster.png";
 import CircleRating from "../circleRating/CircleRating";
 import Genres from "../genres/Genres";
-
 import "./style.scss";
 
 const Carousel = ({ data, loading, endpoint, title }) => {
@@ -25,9 +23,11 @@ const Carousel = ({ data, loading, endpoint, title }) => {
 
         const scrollAmount =
             dir === "left"
-                ? container.scrollLeft - (container.offsetWidth + 20)
-                : container.scrollLeft + (container.offsetWidth + 20);
-
+                ? container.scrollLeft - (container.offsetWidth )
+                : container.scrollLeft + (container.offsetWidth );
+        console.log("scrollLeft",container.scrollLeft)
+        console.log("offsetwidth",container.offsetWidth)
+        console.log("filkjljlj",container.scrollWidth)
         container.scrollTo({
             left: scrollAmount,
             behavior: "smooth",
@@ -64,6 +64,7 @@ const Carousel = ({ data, loading, endpoint, title }) => {
                             const posterUrl = item.poster_path
                                 ? url.poster + item.poster_path
                                 : PosterFallback;
+                            
                             return (
                                 <div
                                     key={item.id}
@@ -98,7 +99,7 @@ const Carousel = ({ data, loading, endpoint, title }) => {
                                         </span>
                                     </div>
                                 </div>
-                            );
+                            ); 
                         })}
                     </div>
                 ) : (
